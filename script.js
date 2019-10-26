@@ -23,6 +23,8 @@ $.ajax({
 
     $(".company-logo").attr("src", logoURL)
     companyName.text(response[i].company);
+
+    
     jobTitle.text(response[i].title);
     
 })
