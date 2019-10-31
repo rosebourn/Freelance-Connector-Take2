@@ -3,6 +3,7 @@ $("#city-search").on("click", function(event) {
     var citySearch = $("#city-input").val();
     console.log(citySearch);
     job(citySearch);
+    window.location.href="./results.html";
 
 })
 
@@ -15,8 +16,8 @@ $.ajax({
     method: "GET",
 }).then(function(response) {
     console.log(response);
-    for (var i = 0; i < 7; i++);
-    var logoURL = response[i].company_logo;
+    //for (var i = 0; i < 7; i++);
+    var logoURL = response[0].company_logo;
     var companyName = $(".company-name");
     var jobTitle = $(".job-title");
     var modalCont = $(".modal-content");
@@ -24,18 +25,30 @@ $.ajax({
 
 
     $(".company-logo").attr("src", logoURL)
-    companyName.text(response[i].company);
-    jobTitle.text(response[i].title);
+    companyName.text(response[0].company);
+    jobTitle.text(response[0].title);
 
   $(document).ready(function(){
     $('.modal').modal();
-    modalCont.html(response[i].description);
-    apply.html(response[i].how_to_apply);
+    modalCont.html(response[0].description);
+    apply.html(response[0].how_to_apply);
   });
     
 })
+}
+
+$("#hotel-please").on("click", function(event) {
+    event.preventDefault();
+    var hotelSearch = $("#city-input").val();
+    console.log("clicked");
+    hotel(hotelSearch);
+    window.location.href="./search.html";
+
+})
+
+function hotel(hotelSearch) {
   
-var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&catagories=hotels&location=" + citySearch;
+var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&catagories=hotels&location=" + hotelSearch;
 
 var key = "oYWHpC6eoQxANbGPlnt9OeA4KdwBCweVLtDZlDdStjnGcPCO1rM8zV2b0IBCw5RaTsOjPO7h7G-YzELmSD1dneDzUyy_I1WH5yzm-OLW32UleOE4kYTu0j6uHVGyXXYx";
 
@@ -61,5 +74,7 @@ $.ajax({
     
 })
 }
+
+
 
 
