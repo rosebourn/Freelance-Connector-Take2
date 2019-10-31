@@ -19,13 +19,19 @@ $.ajax({
     var logoURL = response[i].company_logo;
     var companyName = $(".company-name");
     var jobTitle = $(".job-title");
+    var modalCont = $(".modal-content");
+    var apply = $(".modal-apply");
 
 
     $(".company-logo").attr("src", logoURL)
     companyName.text(response[i].company);
-
-    
     jobTitle.text(response[i].title);
+
+  $(document).ready(function(){
+    $('.modal').modal();
+    modalCont.html(response[i].description);
+    apply.html(response[i].how_to_apply);
+  });
     
 })
   
